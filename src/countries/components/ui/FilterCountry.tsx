@@ -1,11 +1,12 @@
 import IonIcon from "@reacticons/ionicons"
 import { useEffect, useRef, useState } from "react"
-import { useSearch } from "../../../hooks"
+import { useSearch, useTheme } from "../../../hooks"
 
 const continents: string[] = ["Africa", "America", "Asia", "Europe", "Oceania"]
 
 export const FilterCountry = () => {
      const { filterSelect, onFilterChange } = useSearch()
+     const { isDarkModeActive } = useTheme()
      const filter = useRef(null)
      const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
 
@@ -30,14 +31,23 @@ export const FilterCountry = () => {
 
      return (
           <div className='filter-container' ref={filter}>
-               <div className='filter-title-container' onClick={() => onToggleFilter()}>
-                    <span className='filter-title'>{filterSelect}</span>
+               <div
+                    className={`filter-title-container ${isDarkModeActive ? "bright-dark" : ""}`}
+                    onClick={() => onToggleFilter()}
+               >
+                    <span className={`filter-title ${isDarkModeActive ? "f-t-dark " : ""}`}>
+                         {filterSelect}
+                    </span>
                     <IonIcon
                          name='chevron-down-sharp'
                          className={`chevron-arrow ${isFilterOpen ? "rotate-arrow" : ""}`}
                     />
                </div>
-               <div className={`filter-list ${isFilterOpen ? "show-filter" : ""}`}>
+               <div
+                    className={`filter-list ${isFilterOpen ? "show-filter" : ""} ${
+                         isDarkModeActive ? "bright-dark" : ""
+                    }`}
+               >
                     {continents.map((continent) => (
                          <div
                               key={continent}

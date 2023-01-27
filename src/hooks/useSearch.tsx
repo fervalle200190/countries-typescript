@@ -1,11 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
 import { countriesApi } from "../api"
-import { CalendarState, onLoadCountries, onLoadList, onUpdateFilter, onUpdateSearch } from "../store"
+import {
+     CountriesState,
+     onLoadCountries,
+     onLoadList,
+     onUpdateFilter,
+     onUpdateSearch,
+} from "../store"
 import { Countries } from "../types"
 
 export const useSearch = () => {
-     const { searchInput, filterSelect, countriesRaw, countriesList } = useSelector(
-          (state: CalendarState) => state.countries
+     const { searchInput, filterSelect, countriesRaw, countriesList, status } = useSelector(
+          (state: CountriesState) => state.countries
      )
      const dispatch = useDispatch()
 
@@ -34,6 +40,7 @@ export const useSearch = () => {
           onFilterChange,
           startLoadingCountries,
           countriesRaw,
-          countriesList
+          countriesList,
+          status
      }
 }

@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useTheme } from "../../../hooks"
 import { Countries } from "../../../types"
 
 interface Country {
@@ -10,8 +11,9 @@ const getPopulation = (population: number) => {
 }
 
 export const CountryCard: FC<Country> = ({ country }) => {
+     const { isDarkModeActive } = useTheme()
      return (
-          <div key={country.name.common} className={'book-card-container'}>
+          <div key={country.name.common} className={`book-card-container ${isDarkModeActive? 'bright-dark': ''}`}>
                <div className="country-card-img-container">
                     <img src={country.flags.svg} alt={country.name.common} className={'country-card-img'} />
                </div>

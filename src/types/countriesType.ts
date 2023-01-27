@@ -29,7 +29,7 @@ export interface Countries {
     gini?:        { [key: string]: number };
     car:          Car;
     timezones:    string[];
-    continents:   Continent[];
+    continents:   string[];
     flags:        CoatOfArms;
     coatOfArms:   CoatOfArms;
     startOfWeek:  StartOfWeek;
@@ -55,16 +55,6 @@ export enum Side {
 export interface CoatOfArms {
     png?: string;
     svg?: string;
-}
-
-export enum Continent {
-    Africa = "Africa",
-    Antarctica = "Antarctica",
-    Asia = "Asia",
-    Europe = "Europe",
-    NorthAmerica = "North America",
-    Oceania = "Oceania",
-    SouthAmerica = "South America",
 }
 
 export interface Currencies {

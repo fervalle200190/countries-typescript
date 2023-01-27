@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Countries } from "../../types"
 
-const enum Status {
+export const enum Status {
      Loading = "loading",
      Loaded = "loaded",
 }
@@ -28,6 +28,7 @@ export const countriesSlice = createSlice({
      reducers: {
           onLoadCountries: (state, { payload }: PayloadAction<Countries[]>) => {
                state.countriesRaw = payload
+               state.status = Status.Loaded
           },
           onUpdateSearch: (state, { payload }: PayloadAction<string>) => {
                state.filterSelect = "Filter by Region"
@@ -43,6 +44,15 @@ export const countriesSlice = createSlice({
           onUpdateFilter: (state, { payload }: PayloadAction<string>) => {
                state.searchInput = ""
                state.filterSelect = payload
+               if (state.filterSelect === "Filter by Region") {
+                    state.countriesList = state.countriesRaw.sort((a, b) =>
+                         a.name.common > b.name.common ? 1 : -1
+                    )
+               } else {
+                    state.countriesList = state.countriesRaw
+                         .filter((country) => country.continents[0].toLocaleLowerCase().includes(payload.toLowerCase()))
+                         .sort((a, b) => (a.name.common > b.name.common ? 1 : -1))
+               }
           },
           onLoadList: (state, { payload }: PayloadAction<Countries[]>) => {
                state.countriesList = payload.sort((a, b) =>
