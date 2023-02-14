@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
+import { useState } from "react"
 import { countriesApi } from "../api"
 import {
      CountriesState,
      onLoadCountries,
      onLoadList,
+     onSetActiveCountry,
      onUpdateFilter,
      onUpdateSearch,
 } from "../store"
 import { Countries } from "../types"
 
 export const useSearch = () => {
-     const { searchInput, filterSelect, countriesRaw, countriesList, status } = useSelector(
-          (state: CountriesState) => state.countries
-     )
+     const { searchInput, filterSelect, countriesRaw, countriesList, status, activeCountry } =
+          useSelector((state: CountriesState) => state.countries)
      const dispatch = useDispatch()
 
      const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +34,10 @@ export const useSearch = () => {
           }
      }
 
+     const getCountry = (name: string) => {
+          dispatch(onSetActiveCountry(name))
+     }
+
      return {
           searchInput,
           filterSelect,
@@ -41,6 +46,8 @@ export const useSearch = () => {
           startLoadingCountries,
           countriesRaw,
           countriesList,
-          status
+          status,
+          getCountry,
+          activeCountry,
      }
 }

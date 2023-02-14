@@ -32,7 +32,7 @@ export const FilterCountry = () => {
      return (
           <div className='filter-container' ref={filter}>
                <div
-                    className={`filter-title-container ${isDarkModeActive ? "bright-dark" : ""}`}
+                    className={`filter-title-container ${isDarkModeActive ? "f-t-c" : ""}`}
                     onClick={() => onToggleFilter()}
                >
                     <span className={`filter-title ${isDarkModeActive ? "f-t-dark " : ""}`}>

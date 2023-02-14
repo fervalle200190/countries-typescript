@@ -7,7 +7,7 @@ export const CountriesRouter = () => {
                <NavBar />
                <Routes>
                     <Route path='/' element={<HomePage />} />
-                    <Route path='/country/:id' element={<CountryPage />} />
+                    <Route path='/country/:name' element={<CountryPage />} />
                </Routes>
           </>
      )

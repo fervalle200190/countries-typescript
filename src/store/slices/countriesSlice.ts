@@ -6,12 +6,13 @@ export const enum Status {
      Loaded = "loaded",
 }
 
-interface InitialState {
+type InitialState = {
      status: Status
      countriesRaw: Countries[]
      countriesList: Countries[]
      searchInput: string
      filterSelect: string
+     activeCountry: Partial<Countries>
 }
 
 const initialState: InitialState = {
@@ -20,6 +21,7 @@ const initialState: InitialState = {
      countriesList: [],
      searchInput: "",
      filterSelect: "Filter by Region",
+     activeCountry: {},
 }
 
 export const countriesSlice = createSlice({
@@ -31,13 +33,15 @@ export const countriesSlice = createSlice({
                state.status = Status.Loaded
           },
           onUpdateSearch: (state, { payload }: PayloadAction<string>) => {
+               const cleanString = payload.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
                state.filterSelect = "Filter by Region"
                state.searchInput = payload
                state.countriesList = state.countriesRaw
                     .filter((country) =>
                          country.name.common
                               .toLocaleLowerCase()
-                              .includes(payload.toLocaleLowerCase())
+                              .includes(cleanString.toLocaleLowerCase())
                     )
                     .sort((a, b) => (a.name.common > b.name.common ? 1 : -1))
           },
@@ -59,9 +63,20 @@ export const countriesSlice = createSlice({
                     a.name.common > b.name.common ? 1 : -1
                )
           },
+          onSetActiveCountry: (state, {payload}: PayloadAction<string>)=>{
+               const country = state.countriesRaw.find((country)=> country.name.common === payload)
+               if(country) {
+                    state.activeCountry = country
+               }
+          }
      },
 })
 
 // Action creators are generated for each case reducer function
-export const { onLoadCountries, onUpdateSearch, onUpdateFilter, onLoadList } =
-     countriesSlice.actions
+export const { 
+     onLoadCountries, 
+     onUpdateSearch, 
+     onUpdateFilter, 
+     onLoadList, 
+     onSetActiveCountry 
+} = countriesSlice.actions
