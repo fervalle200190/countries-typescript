@@ -419,9 +419,14 @@ body {
 @media screen and (min-width: 850px) {
      .navbar-container {
           height: 70px;
+          padding-left: 50px;
+          padding-right: 50px;
      }
      .brand-title {
           font-size: 18px;
+     }
+     .inner-navbar {
+          max-width: unset;
      }
      .search-section {
           flex-direction: row;
