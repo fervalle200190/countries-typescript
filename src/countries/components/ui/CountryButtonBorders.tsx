@@ -23,16 +23,22 @@ export const CountryButtonBorders = () => {
                     <b>Border Countries:</b>
                </p>
                <div className='border-btns'>
-                    {borders.map((country) => (
-                         <Link to={`/country/${country}`} key={country}>
-                              <button
-                                   className={`btn-borders ${isDarkModeActive ? "btn-dark" : ""}`}
-                                   key={country}
-                              >
-                                   {country}
-                              </button>
-                         </Link>
-                    ))}
+                    {borders.length > 0 ? (
+                         borders.map((country) => (
+                              <Link to={`/country/${country}`} key={country}>
+                                   <button
+                                        className={`btn-borders ${
+                                             isDarkModeActive ? "btn-dark" : ""
+                                        }`}
+                                        key={country}
+                                   >
+                                        {country}
+                                   </button>
+                              </Link>
+                         ))
+                    ) : (
+                         <h4>No Border</h4>
+                    )}
                </div>
           </div>
      )

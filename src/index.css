@@ -52,6 +52,7 @@ body {
      padding-right: 7px;
      height: 35px;
      transition: all 0.2s ease-in-out;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .mode-switch:hover {
@@ -67,6 +68,7 @@ body {
 .brand-title {
      font-size: 14px;
      cursor: pointer;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .search-section {
@@ -79,6 +81,7 @@ body {
 
 .input-container {
      position: relative;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .search-input {
@@ -118,6 +121,7 @@ body {
      cursor: pointer;
      background: var(--White);
      transition: background 0.2s ease-in-out;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .filter-container {
@@ -192,6 +196,7 @@ body {
      overflow: hidden;
      transition: background 0.2s ease-in-out;
      cursor: pointer;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .book-card-container:hover {
@@ -316,11 +321,14 @@ body {
      margin-bottom: 50px;
      box-shadow: 0 0 10px #00000038;
      cursor: pointer;
+     transition: all 0.2s ease-in-out;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .ul-details {
      list-style-type: none;
      padding-left: 0;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .ul-1 {
@@ -342,6 +350,7 @@ body {
      margin-bottom: 45px;
      display: flex;
      justify-content: center;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .image-page-details img {
@@ -376,11 +385,15 @@ body {
      font-family: inherit;
      white-space: nowrap;
      text-overflow: ellipsis;
+     overflow: hidden;
      font-size: 13px;
      border: none;
      background: var(--White);
      box-shadow: 0 0 7px #00000028;
      cursor: pointer;
+     transition: all 0.2s ease-in-out;
+     border-radius: 3px;
+     animation: fadeIn 0.4s cubic-bezier(0, 1.04, 0.83, 0.97);
 }
 
 .border-btns {
@@ -392,6 +405,14 @@ body {
 
 .btn-dark {
      background: var(--DarkBlue);
+     color: var(--White);
+}
+
+.btn-dark:hover {
+     background: hsl(205, 17%, 37%);
+}
+
+.no-msg-dark {
      color: var(--White);
 }
 
@@ -458,5 +479,16 @@ body {
           padding-left: 50px;
           padding-right: 50px;
           min-height: calc(100vh - 70px);
+     }
+}
+
+@keyframes fadeIn {
+     0% {
+          opacity: 0;
+          transform: translate(0,-15px);
+     }
+     100% {
+          opacity: 1;
+          transform: translate(0,0);
      }
 }
